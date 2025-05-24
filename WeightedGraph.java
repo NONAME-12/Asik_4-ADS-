@@ -38,4 +38,28 @@ public class WeightedGraph<Vertex> {
             System.out.println();
         }
     }
+
+    public List<Vertex> adjacencyList(Vertex v) {
+        if (!hasVertex(v)) return Collections.emptyList();
+        List<Vertex> neighbors = new LinkedList<>();
+        for (Edge<Vertex> e : map.get(v)) {
+            neighbors.add(e.getDest());
+        }
+        return neighbors;
+    }
+
+    public boolean hasVertex(Vertex v) {
+        return map.containsKey(v);
+    }
+
+    public boolean hasEdge(Vertex source, Vertex dest) {
+        if (!hasVertex(source)) return false;
+        for (Edge<Vertex> edge : map.get(source)) {
+            if (edge.getDest().equals(dest)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
